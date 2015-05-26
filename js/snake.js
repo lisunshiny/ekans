@@ -26,8 +26,6 @@
 
     if (this.illegalMove(newHead)) {
       this._gameOver = true;
-      alert("ilelgal move!!!");
-
       return;
     }
 
@@ -41,7 +39,7 @@
     else {
       this.board.resetCherry();
     }
-    
+
   };
 
   Snake.prototype.illegalMove = function(newHead) {

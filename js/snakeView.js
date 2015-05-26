@@ -154,7 +154,6 @@
     var key = keys[button];
 
     if (key) {
-      console.log(key)
       this.board.snake.turn(key);
     }
   };
@@ -163,7 +162,9 @@
     window.clearInterval(this.intervalId);
     $(window).off();
     View.prototype.deleteClasses(this.board.snake);
-  }
+    alert("You lose :(. Refresh to try again!");
+
+  };
 
 
 
