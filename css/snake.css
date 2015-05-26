@@ -1,3 +1,44 @@
-.snake-game {
-  background: green;
+html, body, ul, li, h1, figure {
+  margin: 0;
+  border: 0;
+  padding: 0;
+
+  background: transparent;
+  font: inherit;
+  text-style: inherit;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.squares-container {
+  width: calc(60px * 10);
+  height: calc(60px * 10);
+  border: 1px solid black;
+  margin: auto;
+}
+
+.square {
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  width: 60px;
+  height: 60px;
+  border: 1px solid black;
+}
+
+.snake-segment {
+  background: blue;
+}
+
+.cherry {
+  background: red;
 }

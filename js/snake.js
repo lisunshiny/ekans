@@ -3,12 +3,13 @@
     var Game = window.Game = {};
   }
 
-  var gridsize = Game.GRIDSIZE = 16
+  var gridsize = Game.GRIDSIZE = 10
 
   var Snake = Game.Snake = function(board) {
     this.dir = "N";
     this.board = board;
-    this.segments = [ gridsize * gridsize / 2];
+    this._gameOver = false;
+    this.segments = [ gridsize * gridsize / 2 + gridsize / 2];
   }
 
   Snake.DIRS = {
@@ -24,7 +25,9 @@
     var newHead = _.last(this.segments) + dir;
 
     if (this.illegalMove(newHead)) {
+      this._gameOver = true;
       alert("ilelgal move!!!");
+
       return;
     }
 
@@ -90,7 +93,6 @@
     this.grid = this.generateGrid();
     // this.cherry = random number between 0 and grid size ** 2
     this.resetCherry();
-    debugger;
   };
 
   Board.prototype.generateGrid = function() {
