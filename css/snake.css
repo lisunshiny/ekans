@@ -41,6 +41,40 @@ ul {
   background-image: url("../assets/pikachu-sprite.png");
 }
 
+
+
 .cherry {
   background-image: url("../assets/pokeball.png");
+}
+
+.trainer-segment {
+  background-image: url("../assets/trainer-sprite.png");
+}
+
+.south {
+  background-position-y: 0;
+}
+
+.north {
+  background-position-y: -60px;
+}
+
+.west {
+  background-position-y: -120px;
+}
+
+.east {
+  background-position-y: -180px;
+}
+
+.sprite-1 {
+  background-position-x: 0px
+}
+
+.sprite-2 {
+  background-position-x: -60px
+}
+
+.sprite-3 {
+  background-position-x: -120px
 }
