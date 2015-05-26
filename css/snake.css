@@ -22,6 +22,7 @@ ul {
 .squares-container {
   width: calc(60px * 10);
   height: calc(60px * 10);
+  background-image: url("../assets/background.png");
   border: 1px solid black;
   margin: auto;
 }
@@ -32,13 +33,14 @@ ul {
   float: left;
   width: 60px;
   height: 60px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
 }
 
 .snake-segment {
-  background: blue;
+  /*background: blue;*/
+  background-image: url("../assets/pikachu-sprite.png");
 }
 
 .cherry {
-  background: red;
+  background-image: url("../assets/pokeball.png");
 }
