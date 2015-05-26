@@ -36,7 +36,7 @@ ul {
   /*border: 1px solid black;*/
 }
 
-.snake-segment {
+.pikachu {
   /*background: blue;*/
   background-image: url("../assets/pikachu-sprite.png");
 }
@@ -47,7 +47,7 @@ ul {
   background-image: url("../assets/pokeball.png");
 }
 
-.trainer-segment {
+.trainer {
   background-image: url("../assets/trainer-sprite.png");
 }
 

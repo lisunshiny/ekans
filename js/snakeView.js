@@ -37,10 +37,15 @@
   };
 
   View.prototype.renderSnake = function() {
-    _.each(this.board.snake.segments, function(id) {
+    _.each(this.board.snake.segments, function(id, index) {
 
       var $segment = this.$el.find("#" + id);
-      $segment.addClass("snake-segment")
+
+      if (index === 0) {
+        $segment.addClass("trainer")
+      } else {
+        $segment.addClass("pikachu")
+      }
     }.bind(this));
   };
 
@@ -66,20 +71,35 @@
     var newCherry = this.board.cherry;
 
     //update snake location
-    this.updateClasses(oldSegments, newSegments, "snake-segment");
+    this.updateClasses(oldSegments, newSegments);
 
     //update cherry location
     if (newCherry !== oldCherry) {
-      this.updateClasses([oldCherry], [newCherry], "cherry");
+      this.toggleClasses([oldCherry, newCherry], "cherry");
     }
   };
 
-  View.prototype.updateClasses = function(oldArr, newArr, cssClass) {
+  View.prototype.updateClasses = function(oldArr, newArr) {
     var toDelete = _.difference(oldArr, newArr);
+
     var toAdd = _.difference(newArr, oldArr);
 
+    // delete all references to old class
+    this.deleteClasses(toDelete);
 
-    this.toggleClasses(toDelete.concat(toAdd), cssClass);
+    //update image rendering
+    this.updateBackground(oldArr, newArr);
+
+  };
+
+  View.prototype.updateBackground = function(oldArr, newArr) {
+    var heads = _.last(newArr, 2)
+
+    //remove trainer from old head and put on new
+    this.toggleClasses(heads, "trainer")
+
+    //add pikachu class to old head
+    this.$el.find("#" + heads[0]).toggleClass("pikachu")
 
   };
 
@@ -89,6 +109,13 @@
       $segment.toggleClass(cssClass);
     }.bind(this))
   };
+
+  View.prototype.deleteClasses = function(arr) {
+    _.each(arr, function(id) {
+      var $segment = this.$el.find("#" + id);
+      $segment.removeClass("pikachu trainer");
+    }.bind(this))
+  }
 
   View.prototype.handlePress = function(event) {
     var button = event.keyCode;
