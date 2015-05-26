@@ -8,7 +8,7 @@
     this.board = new Game.Board();
     this.setupGrid();
 
-    this.intervalId = window.setInterval(this.move.bind(this), 200);
+    this.intervalId = window.setInterval(this.move.bind(this), 180);
 
     $(window).on("keydown", this.handlePress.bind(this))
 
@@ -40,12 +40,7 @@
     _.each(this.board.snake.segments, function(id, index) {
 
       var $segment = this.$el.find("#" + id);
-
-      if (index === 0) {
-        $segment.addClass("trainer")
-      } else {
-        $segment.addClass("pikachu")
-      }
+      $segment.addClass("trainer " + this.board.snake.dir)
     }.bind(this));
   };
 
@@ -53,6 +48,32 @@
     var $cherry = this.$el.find("#" + this.board.cherry);
     $cherry.addClass("cherry");
   };
+
+  View.prototype.animate1 = function() {
+    _.each(this.board.snake.segments, function(id, index) {
+      var $segment = this.$el.find("#" + id)
+      $segment.removeClass("sprite-3");
+    }.bind(this))
+  };
+
+  View.prototype.animate2 = function() {
+    _.each(this.board.snake.segments, function(id, index) {
+      var $segment = this.$el.find("#" + id)
+
+      $segment.removeClass("sprite-1");
+      $segment.addClass("sprite-2");
+    }.bind(this))
+  };
+
+  View.prototype.animate3 = function() {
+    _.each(this.board.snake.segments, function(id, index) {
+      var $segment = this.$el.find("#" + id)
+      $segment.removeClass("sprite-2");
+      $segment.addClass("sprite-3");
+    }.bind(this))
+  };
+
+
 
   View.prototype.move = function() {
 
@@ -63,7 +84,7 @@
     this.board.snake.move();
 
     if (this.board.snake._gameOver) {
-      this.endGame;
+      this.endGame();
     }
 
     //get new stuff
@@ -73,10 +94,17 @@
     //update snake location
     this.updateClasses(oldSegments, newSegments);
 
+
     //update cherry location
     if (newCherry !== oldCherry) {
       this.toggleClasses([oldCherry, newCherry], "cherry");
     }
+
+    this.animate2Id = window.setTimeout(this.animate2.bind(this), 60);
+    this.animate3Id = window.setTimeout(this.animate3.bind(this), 120);
+    this.animate1Id = window.setTimeout(this.animate1.bind(this), 180);
+
+
   };
 
   View.prototype.updateClasses = function(oldArr, newArr) {
@@ -98,6 +126,9 @@
     //remove trainer from old head and put on new
     this.toggleClasses(heads, "trainer")
 
+    //put direction on new head
+    this.$el.find("#" + heads[1]).addClass(this.board.snake.dir)
+
     //add pikachu class to old head
     this.$el.find("#" + heads[0]).toggleClass("pikachu")
 
@@ -113,7 +144,7 @@
   View.prototype.deleteClasses = function(arr) {
     _.each(arr, function(id) {
       var $segment = this.$el.find("#" + id);
-      $segment.removeClass("pikachu trainer");
+      $segment.removeClass("pikachu trainer N S E W");
     }.bind(this))
   }
 
@@ -129,6 +160,8 @@
 
   View.prototype.endGame = function() {
     window.clearInterval(this.intervalId);
+    $(window).off();
+    View.prototype.deleteClasses(this.board.snake);
   }
 
 

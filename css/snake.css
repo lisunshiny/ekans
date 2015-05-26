@@ -51,19 +51,19 @@ ul {
   background-image: url("../assets/trainer-sprite.png");
 }
 
-.south {
+.S {
   background-position-y: 0;
 }
 
-.north {
+.N {
   background-position-y: -60px;
 }
 
-.west {
+.W {
   background-position-y: -120px;
 }
 
-.east {
+.E {
   background-position-y: -180px;
 }
 
