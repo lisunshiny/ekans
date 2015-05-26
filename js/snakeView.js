@@ -160,10 +160,9 @@
 
   View.prototype.endGame = function() {
     window.clearInterval(this.intervalId);
+    alert("You lose :(. Refresh to try again!");
     $(window).off();
     View.prototype.deleteClasses(this.board.snake);
-    alert("You lose :(. Refresh to try again!");
-
   };
 
 
