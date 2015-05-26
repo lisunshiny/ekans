@@ -121,16 +121,17 @@
   };
 
   View.prototype.updateBackground = function(oldArr, newArr) {
-    var heads = _.last(newArr, 2)
+    var oldHead = _.last(oldArr)
+    var newHead = _.last(newArr)
 
-    //remove trainer from old head and put on new
-    this.toggleClasses(heads, "trainer")
+    //put trainer and direction on new head
+    this.$el.find("#" + newHead).addClass("trainer " + this.board.snake.dir)
 
-    //put direction on new head
-    this.$el.find("#" + heads[1]).addClass(this.board.snake.dir)
-
-    //add pikachu class to old head
-    this.$el.find("#" + heads[0]).toggleClass("pikachu")
+    //if old head is becoming a pikachu...
+    if (newArr.length > 1) {
+      this.$el.find("#" + oldHead).removeClass("trainer");
+      this.$el.find("#" + oldHead).addClass("pikachu")
+    }
 
   };
 
