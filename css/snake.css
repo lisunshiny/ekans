@@ -4,7 +4,7 @@
   100% { visibility: visible; }
 }
 
-html, body, ul, li, h1, figure, p, h2, strong {
+html, body, ul, li, h1, figure, p, h2, strong, i {
   margin: 0;
   border: 0;
   padding: 0;
@@ -40,6 +40,13 @@ h1 {
   display: block;
   height: 60px;
   background-image: url("../assets/ocean.png")
+}
+
+.scoreboard {
+
+  color: white;
+  padding: 10px;
+  display: inline-block;
 
 }
 
@@ -77,11 +84,9 @@ h1 {
   float: left;
   width: 60px;
   height: 60px;
-  /*border: 1px solid black;*/
 }
 
 .pikachu {
-  /*background: blue;*/
   background-image: url("../assets/pikachu-sprite.png");
 }
 
