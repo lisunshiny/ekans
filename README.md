@@ -1,6 +1,6 @@
 #Ekans
 
-Ekans is a Pokemon-themed variation of the classic Snake game using the `up`, `down`, `left`, and `right` keys. [Play it here!](http://lisunshiny.github.io/ekans/)
+Ekans is a Pokemon-themed variation of the classic Snake game using the `up`, `down`, `left`, and `right` keys. [Play it here!](eka.nz)
 
 ![screenshot](assets/screenshot.png)
 
