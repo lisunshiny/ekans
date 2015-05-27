@@ -12,11 +12,24 @@
     this.board = new Game.Board(this.boardWidth, this.boardHeight);
     this.setupGrid();
 
-    this.intervalId = window.setInterval(this.move.bind(this), 180);
+    $(window).one("keydown", this.startGame.bind(this));
 
-    $(window).on("keydown", this.handlePress.bind(this))
+
+    // this.intervalId = window.setInterval(this.move.bind(this), 180);
+    //
+    // $(window).on("keydown", this.handlePress.bind(this))
 
   };
+
+  View.prototype.startGame = function() {
+    debugger;
+    this.intervalId = window.setInterval(this.move.bind(this), 180);
+
+    $(window).on("keydown", this.handlePress.bind(this));
+
+  }
+
+
 
   var keys = View.KEYS = {
     38: "N",
@@ -29,7 +42,7 @@
     var height = $(window).height();
     var width = $(window).width();
 
-    this.boardHeight = Math.floor(height / 60);
+    this.boardHeight = Math.floor(height / 60) - 1;
     this.boardWidth = Math.floor(width / 60);
 
   };
