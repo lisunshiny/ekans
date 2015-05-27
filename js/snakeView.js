@@ -4,8 +4,12 @@
   }
 
   var View = Game.View = function($el) {
+
+    // calculate the board height and width.
+    this.boardSize();
+
     this.$el = $el;
-    this.board = new Game.Board();
+    this.board = new Game.Board(this.boardWidth, this.boardHeight);
     this.setupGrid();
 
     this.intervalId = window.setInterval(this.move.bind(this), 180);
@@ -21,8 +25,18 @@
     37: "W"
   };
 
+  View.prototype.boardSize = function() {
+    var height = $(window).height();
+    var width = $(window).width();
+
+    this.boardHeight = Math.floor(height / 60);
+    this.boardWidth = Math.floor(width / 60);
+
+  };
+
   View.prototype.setupGrid = function() {
     var $ul = $("<ul>").addClass("squares-container clearfix")
+    $ul.css("width", this.boardWidth * 60);
 
     _.each(this.board.grid, function(item, index) {
       var $li = $("<li>").addClass("square");

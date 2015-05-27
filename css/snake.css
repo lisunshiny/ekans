@@ -8,6 +8,17 @@ html, body, ul, li, h1, figure {
   text-style: inherit;
 }
 
+body {
+  position: relative;
+  background-image: url("../assets/rock.png")
+}
+header {
+  display: block;
+  height: 60px;
+  background-image: url("../assets/ocean.png")
+
+}
+
 ul {
   list-style-type: none;
 }
@@ -19,10 +30,9 @@ ul {
 }
 
 .squares-container {
-  width: calc(60px * 10);
-  height: calc(60px * 10);
-  background-image: url("../assets/background.png");
-  margin: auto;
+  background-image: url("../assets/grass.png");
+  position: absolute;
+  /*top: 60px;*/
 }
 
 .square {

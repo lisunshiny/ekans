@@ -3,28 +3,34 @@
     var Game = window.Game = {};
   }
 
-  var gridsize = Game.GRIDSIZE = 10
 
-  var Snake = Game.Snake = function(board) {
+  var Snake = Game.Snake = function(board, width, height) {
     this.dir = "N";
     this.board = board;
-    this._gameOver = false;
-    this.segments = [ gridsize * gridsize / 2 + gridsize / 2];
-  }
 
-  Snake.DIRS = {
-    "N": -gridsize,
-    "S": gridsize,
-    "E": 1,
-    "W": -1
+    this.width = width;
+    this.height = height;
+
+    this._gameOver = false;
+    this.segments = [ this.width * Math.floor(this.height / 2) + Math.floor(this.width / 2)];
+
+    this.DIRS = {
+      "N": -this.width,
+      "S": this.width,
+      "E": 1,
+      "W": -1
+    };
+
+
   };
 
   Snake.prototype.move = function() {
     // updates moves.
-    var dir = Snake.DIRS[this.dir];
+    var dir = this.DIRS[this.dir];
     var newHead = _.last(this.segments) + dir;
 
     if (this.illegalMove(newHead)) {
+      debugger;
       this._gameOver = true;
       return;
     }
@@ -53,15 +59,18 @@
 
   Snake.prototype.hitsWall = function (newHead){
     // hits right hand wall
-    if (newHead % gridsize === 0 && this.dir === "E"){
+    if (newHead % this.width === 0 && this.dir === "E"){
+      debugger;
       return true;
     }
     // hits left hand wall
-    if (newHead % gridsize === gridsize - 1 && this.dir === "W") {
+    if (newHead % this.width === this.width - 1 && this.dir === "W") {
+      debugger;
       return true;
     }
     // hits top or bottom wall
-    if (newHead < 0 || newHead > (gridsize * gridsize - 1)) {
+    if (newHead < 0 || newHead > (this.width * this.height - 1)) {
+      debugger;
       return true;
     }
 
@@ -87,15 +96,15 @@
 
   //now for the board
 
-  var Board = Game.Board = function() {
-    this.snake = new Game.Snake(this);
+  var Board = Game.Board = function(width, height) {
+    this.snake = new Game.Snake(this, width, height);
     this.grid = this.generateGrid();
     // this.cherry = random number between 0 and grid size ** 2
     this.resetCherry();
   };
 
   Board.prototype.generateGrid = function() {
-    var grid = new Array( Math.pow( gridsize, 2 ) );
+    var grid = new Array( this.snake.width * this.snake.height );
 
     return grid;
   };
