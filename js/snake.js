@@ -30,7 +30,6 @@
     var newHead = _.last(this.segments) + dir;
 
     if (this.illegalMove(newHead)) {
-      debugger;
       this._gameOver = true;
       return;
     }
@@ -60,17 +59,14 @@
   Snake.prototype.hitsWall = function (newHead){
     // hits right hand wall
     if (newHead % this.width === 0 && this.dir === "E"){
-      debugger;
       return true;
     }
     // hits left hand wall
     if (newHead % this.width === this.width - 1 && this.dir === "W") {
-      debugger;
       return true;
     }
     // hits top or bottom wall
     if (newHead < 0 || newHead > (this.width * this.height - 1)) {
-      debugger;
       return true;
     }
 
@@ -105,6 +101,10 @@
 
   Board.prototype.generateGrid = function() {
     var grid = new Array( this.snake.width * this.snake.height );
+
+    grid = _.map(grid, function(item, index) {
+      return index;
+    });
 
     return grid;
   };

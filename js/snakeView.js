@@ -22,13 +22,26 @@
   };
 
   View.prototype.startGame = function() {
-    $(".start-screen").css("display", "none");
+    $(".starting").addClass("hidden");
+    this.bestScore = 0;
+    this.$bestScore = $(".best-score");
+
+    this.startSequence();
+
+  };
+
+  View.prototype.startSequence = function() {
+
+
+    this.score = 0;
+    this.$score = $(".score");
+    this.$score.html(this.score);
 
     this.intervalId = window.setInterval(this.move.bind(this), 180);
-
     $(window).on("keydown", this.handlePress.bind(this));
 
-  }
+
+  };
 
 
 
@@ -52,8 +65,9 @@
     var $ul = $("<ul>").addClass("squares-container clearfix")
     $ul.css("width", this.boardWidth * 60);
 
-    _.each(this.board.grid, function(item, index) {
-      var $li = $("<li>").addClass("square");
+    _.each(this.board.grid, function(index) {
+      //hardcode to remove old classes
+      var $li = $("<li>").attr("class","square");
       $li.attr("id", index);
       $ul.append($li)
     })
@@ -126,12 +140,25 @@
     //update cherry location
     if (newCherry !== oldCherry) {
       this.toggleClasses([oldCherry, newCherry], "cherry");
+      this.updateScore();
     }
 
     this.animate2Id = window.setTimeout(this.animate2.bind(this), 60);
     this.animate3Id = window.setTimeout(this.animate3.bind(this), 120);
     this.animate1Id = window.setTimeout(this.animate1.bind(this), 180);
 
+
+  };
+
+  View.prototype.updateScore = function() {
+    this.score++;
+    this.$score.html(this.score);
+
+    // replace high score
+    if (this.bestScore < this.score) {
+      this.bestScore = this.score;
+      this.$bestScore.html(this.bestScore);
+    }
 
   };
 
@@ -175,7 +202,7 @@
       var $segment = this.$el.find("#" + id);
       $segment.removeClass("pikachu trainer N S E W");
     }.bind(this))
-  }
+  };
 
   View.prototype.handlePress = function(event) {
     var button = event.keyCode;
@@ -186,12 +213,31 @@
     }
   };
 
+  View.prototype.clearBoard = function() {
+    _.each(this.board.grid, function(id) {
+      var $segment = this.$el.find("#" + id);
+      $segment.attr("class", "square");
+    }.bind(this))
+  }
+
   View.prototype.endGame = function() {
     window.clearInterval(this.intervalId);
-    alert("You lose :(. Refresh to try again!");
+
     $(window).off();
-    View.prototype.deleteClasses(this.board.snake);
+
+    $(".ending").removeClass("hidden");
+    $(window).one("keydown", this.restartGame.bind(this));
+    //
   };
+
+  View.prototype.restartGame = function() {
+    $(".ending").addClass("hidden");
+
+    this.board = new Game.Board(this.boardWidth, this.boardHeight);
+    this.setupGrid();
+
+    this.startSequence();
+  }
 
   View.prototype.validDir = function(dir, otherDir) {
 

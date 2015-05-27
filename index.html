@@ -12,14 +12,21 @@
     <script src="js/snakeView.js"></script>
     <link rel="stylesheet" href="css/snake.css" type="text/css">
     <header class="header">
-      <strong class="scoreboard">
-        Score: <i class="score">12</i>
+      <strong class="scoreboard current">
+        Score: <i class="score"></i>
+      </strong>
+      <strong class="scoreboard best">
+        Best Score: <i class="best-score">0</i>
       </strong>
     </header>
-    <nav class="start-screen">
+    <nav class="starting screen">
       <h1>Ekans</h1>
       <p>Move: up, down, left and right keys</p>
       <p class="start">Press any key to begin.</p>
+    </nav>
+    <nav class="ending screen hidden">
+      <p>Good game.</p>
+      <p class="start">Press any key to try again.</p>
     </nav>
     <figure class="snake-game"></figure>
 

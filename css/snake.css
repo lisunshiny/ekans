@@ -46,11 +46,19 @@ h1 {
 
   color: white;
   padding: 10px;
-  display: inline-block;
+  display: block;
+}
+
+.best {
+  float: right;
+}
+
+.current {
+  float: left;
 
 }
 
-.start-screen {
+.screen {
   display: block;
   width: 300px;
   background: #000080;
@@ -64,6 +72,9 @@ h1 {
 }
 
 
+.hidden {
+  display: none;
+}
 
 
 .clearfix:after {
