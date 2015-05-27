@@ -11,7 +11,8 @@ Ekans is a Pokemon-themed variation of the classic Snake game using the `up`, `d
 
 
 ##TODO
-* Add the ability to reset the game without refreshing.
-* Remove fixed width: allow the game to automatically scale to the size of the `window`.
-* Add a score counter.
-* Add a leaderboard.
+- [x] Add the ability to reset the game without refreshing.
+- [x] Remove fixed width: allow the game to automatically scale to the size of the `window`.
+- [x] Add a score counter.
+- [ ] Add a leaderboard.
+- [ ] Make sprites less "wiggly".  
