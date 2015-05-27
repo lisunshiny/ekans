@@ -22,7 +22,8 @@
   };
 
   View.prototype.startGame = function() {
-    debugger;
+    $(".start-screen").css("display", "none");
+
     this.intervalId = window.setInterval(this.move.bind(this), 180);
 
     $(window).on("keydown", this.handlePress.bind(this));
@@ -180,7 +181,7 @@
     var button = event.keyCode;
     var key = keys[button];
 
-    if (key) {
+    if (key && this.validDir(key, this.board.snake.dir)) {
       this.board.snake.turn(key);
     }
   };
@@ -191,6 +192,17 @@
     $(window).off();
     View.prototype.deleteClasses(this.board.snake);
   };
+
+  View.prototype.validDir = function(dir, otherDir) {
+
+    if ((dir === "N" && otherDir === "S") || dir === "S" && otherDir === "N") {
+      return false;
+    }
+    if ((dir === "E" && otherDir === "W") || dir === "W" && otherDir === "E") {
+      return false;
+    }
+    return true;
+  }
 
 
 

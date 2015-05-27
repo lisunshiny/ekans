@@ -4,7 +4,7 @@
   100% { visibility: visible; }
 }
 
-html, body, ul, li, h1, figure, p, h2 {
+html, body, ul, li, h1, figure, p, h2, strong {
   margin: 0;
   border: 0;
   padding: 0;
@@ -46,13 +46,14 @@ h1 {
 .start-screen {
   display: block;
   width: 300px;
-  background: white;
+  background: #000080;
+  color: #FFD700;
   position: relative;
   margin: auto;
   top: 20px;
   z-index: 1;
   padding: 20px;
-  border:
+  border: 5px solid #fff;
 }
 
 
@@ -67,7 +68,7 @@ h1 {
 .squares-container {
   background-image: url("../assets/grass.png");
   position: absolute;
-  /*top: 60px;*/
+  top: 60px;
 }
 
 .square {
