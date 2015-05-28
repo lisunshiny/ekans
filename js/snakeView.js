@@ -151,7 +151,7 @@
   };
 
   View.prototype.updateScore = function() {
-    this.score++;
+    this.score = this.score + 100;
     this.$score.html(this.score);
 
     // replace high score
