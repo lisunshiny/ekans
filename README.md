@@ -5,7 +5,7 @@ Ekans is a Pokemon-themed variation of the classic Snake game using the `up`, `d
 ![screenshot](assets/screenshot.png)
 
 ##Highlights
-* Adds and removes CSS classes with asynchronous `setTimeout` method calls to produce the animated effect.
+* Preloads images in the background upon load to reduce lag time.
 * Uses efficient JQuery logic that only triggers new classes when absolutely necessary. This results in a really fast game, despite the high level of animation and movement.
 * Sprites are animated with sprite sheets in order to prevent flashing and reduce the number of `GET` requests.
 
