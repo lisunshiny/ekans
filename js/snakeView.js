@@ -207,10 +207,32 @@
   View.prototype.handlePress = function(event) {
     var button = event.keyCode;
     var key = keys[button];
+    var head = _.last(this.board.snake.segments)
+    debugger;
 
-    if (key && this.validDir(key, this.board.snake.dir)) {
+    if (key && this.validPress(head) && this.validDir(key, this.board.snake.dir)) {
+      this.headAtPress = head;
       this.board.snake.turn(key);
     }
+  };
+
+  View.prototype.validPress = function(head) {
+    if (typeof this.headAtPress === "undefined") {
+      return true;
+    }
+
+    return this.headAtPress !== head;
+  };
+
+  View.prototype.validDir = function(dir, otherDir) {
+
+    if ((dir === "N" && otherDir === "S") || dir === "S" && otherDir === "N") {
+      return false;
+    }
+    if ((dir === "E" && otherDir === "W") || dir === "W" && otherDir === "E") {
+      return false;
+    }
+    return true;
   };
 
   View.prototype.clearBoard = function() {
@@ -218,7 +240,7 @@
       var $segment = this.$el.find("#" + id);
       $segment.attr("class", "square");
     }.bind(this))
-  }
+  };
 
   View.prototype.endGame = function() {
     window.clearInterval(this.intervalId);
@@ -239,16 +261,7 @@
     this.startSequence();
   }
 
-  View.prototype.validDir = function(dir, otherDir) {
 
-    if ((dir === "N" && otherDir === "S") || dir === "S" && otherDir === "N") {
-      return false;
-    }
-    if ((dir === "E" && otherDir === "W") || dir === "W" && otherDir === "E") {
-      return false;
-    }
-    return true;
-  }
 
 
 
