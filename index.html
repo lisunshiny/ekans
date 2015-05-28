@@ -32,6 +32,10 @@
 
     <script>
       $(function() {
+        // preload image.
+        var Image1 = new Image();
+        Image1.src = "assets/pikachu-sprite.png";
+
         new Game.View($(".snake-game"));
       });
     </script>
