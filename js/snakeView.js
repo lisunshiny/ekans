@@ -208,7 +208,6 @@
     var button = event.keyCode;
     var key = keys[button];
     var head = _.last(this.board.snake.segments)
-    debugger;
 
     if (key && this.validPress(head) && this.validDir(key, this.board.snake.dir)) {
       this.headAtPress = head;
